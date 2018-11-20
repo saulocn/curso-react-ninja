@@ -12,7 +12,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.6.3/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.6.3/umd/react-dom.development.js"></script>
     <script>
-        var h1 =  React.createElement('h1', null, 'Hello h1 React')
+        var h1 =  React.DOM.h1(null, 
+        [
+            React.createElement('span',null,React.createElement('i',null,'Texto do span em itálico...')),
+            React.createElement('span',null,'Texto do span 2...')
+        ])
         ReactDOM.render(h1, document.getElementById('app'))
         console.log(h1)
     </script>
