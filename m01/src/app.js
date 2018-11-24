@@ -5,8 +5,10 @@ import Title from './title'
 
 const App =  React.createClass({
     render: function () {
-        return <div>
+        return <div className='container'>
             <Title name='Saulo de Carvalho Neto' />
+            <label htmlFor='input' data-label='Label'>Input</label>
+            <input type='text' id='input' aria-hidden='{true}'/>
         </div>
     }
 })
