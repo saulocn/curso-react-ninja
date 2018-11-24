@@ -2,10 +2,10 @@
 // deve ser sempre as primeiras linhas do arquivo
 
 import React from 'react'
-import { render } from 'react-dom'
+import { render as renderReactDom} from './react-dom'
 import Title from './app'
 
-render(
+renderReactDom(
     React.createElement(Title),
     document.querySelector('[data-js="app"]')
 )
