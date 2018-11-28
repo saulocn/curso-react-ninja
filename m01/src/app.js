@@ -3,6 +3,18 @@
 import React from 'react'
 import Title from './title'
 
+class App  extends React.Component {
+    render () {
+        return (
+            <div className='container'>
+                <Title name='Saulo' lastName={{first:'Carvalho', last:'Neto'}}  />
+            </div>
+        )
+    }
+}
+
+
+/*
 const App =  React.createClass({
     render: function () {
         return <div className='container'>
@@ -12,7 +24,7 @@ const App =  React.createClass({
         </div>
     }
 })
-
+*/
 
 
 

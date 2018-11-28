@@ -1,6 +1,20 @@
 'use strict'
 import React from 'react'
 
+
+const Title =  ({name, lastName}) => (
+    <h1>Olá {`${name} ${lastName.first} ${lastName.last}`}!</h1>
+)
+
+Title.defaultProps = {
+    name : 'Desconhecido',
+    lastName : {
+        first:'Sem',
+        last:'Sobrenome'
+    }
+}
+
+/*
 const Title = React.createClass({
     getDefaultProps: function(){
         return {
@@ -14,6 +28,6 @@ const Title = React.createClass({
     render: function(){
         return <h1>Olá {this.props.name} {this.props.lastName.first} {this.props.lastName.last}!</h1>
     }
-})
+})*/
 
 export default Title
