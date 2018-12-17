@@ -1,15 +1,16 @@
 'use strict'
 
 import React, { Component } from 'react'
-import Title from './title'
-import Square from './square'
+import Button from './button'
 
 class App  extends Component {
     render () {
         return (
-            <div className='container' onClick={e => alert('clicou!')} >
-                <Title name='Saulo' lastName={{first:'Carvalho', last:'Neto'}}  />
-                <Square  />
+            <div className='container' >
+                <Button>
+                    <span>Texto</span>
+                    Outro texto
+                </Button>
             </div>
         )
     }
