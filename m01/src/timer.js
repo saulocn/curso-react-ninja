@@ -10,7 +10,6 @@ class Timer extends Component {
     }
     componentWillReceiveProps(nextProps){
         console.log('componentWillReceiveProps', this.props, nextProps)
-
     }
     componentDidMount(){
         this.timer = setInterval(() => 
@@ -18,11 +17,18 @@ class Timer extends Component {
                 time:this.state.time+1
             }), 1000)
     }
-
+    shouldComponentUpdate(nextProps, nextState){
+        console.log('shouldComponentUpdate', this.state, nextState)
+        console.log('shouldComponentUpdate', this.props, nextProps)
+        //return this.state.time !== nextState.time   
+        //return this.props.time !== nextProps.time  
+        return true 
+    }
     componentWillUnmount(){
         clearInterval(this.timer)
     }
     render(){
+        console.log('render timer')
         return (<div>Timer: {this.state.time}</div>)
     }
 }
