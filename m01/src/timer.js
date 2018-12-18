@@ -1,34 +1,38 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 class Timer extends Component {
-    constructor(){
+    constructor() {
         super()
+        console.log('timer: constructor')
         this.state = {
-            time:0
+            time: 0
         }
         this.timer;
     }
-    componentWillReceiveProps(nextProps){
-        console.log('componentWillReceiveProps', this.props, nextProps)
+    componentWillReceiveProps(nextProps) {
+        console.log('timer: componentWillReceiveProps', this.props, nextProps)
     }
-    componentDidMount(){
-        this.timer = setInterval(() => 
+    componentDidMount() {
+        this.timer = setInterval(() =>
             this.setState({
-                time:this.state.time+1
+                time: this.state.time + 1
             }), 1000)
     }
-    shouldComponentUpdate(nextProps, nextState){
-        console.log('shouldComponentUpdate', this.state, nextState)
-        console.log('shouldComponentUpdate', this.props, nextProps)
-        //return this.state.time !== nextState.time   
-        //return this.props.time !== nextProps.time  
-        return true 
+    componentWillUpdate(nextProps, nextState) {
+        console.log('timer: componentWillUpdate', this.props, nextProps)
     }
-    componentWillUnmount(){
+    shouldComponentUpdate(nextProps, nextState) {
+        //console.log('shouldComponentUpdate', this.state, nextState)
+        //console.log('shouldComponentUpdate', this.props, nextProps)
+        //return this.state.time !== nextState.time   
+        return this.props.time !== nextProps.time  
+        //return true
+    }
+    componentWillUnmount() {
         clearInterval(this.timer)
     }
-    render(){
-        console.log('render timer')
+    render() {
+        //console.log('timer: render')
         return (<div>Timer: {this.state.time}</div>)
     }
 }
