@@ -28,6 +28,9 @@ class Timer extends Component {
         return this.props.time !== nextProps.time  
         //return true
     }
+    componentDidUpdate(prevProps, prevState){
+        console.log('componentDidUpdate', this.props, prevProps)
+    }
     componentWillUnmount() {
         clearInterval(this.timer)
     }
