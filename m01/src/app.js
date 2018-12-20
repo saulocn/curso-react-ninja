@@ -15,7 +15,20 @@ class App extends Component {
     render() {
         return (
             <div>
-                <form>
+                <form 
+                onSubmit={
+                    (e)=>{
+                        e.preventDefault();
+                        console.log('event', e)
+                    }
+                }
+                onChange={
+                    e=>{
+                        console.log('name', e.target.name)
+                        console.log('value', e.target.value)
+                    }
+                }
+                >
                     <input type='text'
                         value={this.state.value}
                         onChange={(e) => {
@@ -92,7 +105,9 @@ class App extends Component {
                     <br />
 
                     <textarea defaultValue={'Valor Padrão do text area com \n quebra\n de \n linha'} />
-
+                    <br />
+                    <br />
+                    <button type='submit'>Enviar</button>
                 </form>
             </div>
         )
