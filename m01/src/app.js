@@ -7,7 +7,9 @@ class App extends Component {
         super()
         this.state = {
             value: 'Valor inicial',
-            checked: false
+            checked: false,
+            valueSelect: '2',
+            valueSelectMulti: ['2', '3']
         }
     }
     render() {
@@ -39,19 +41,52 @@ class App extends Component {
                     </label>
                     <br />
                     <br />
-                    <input 
-                    type='radio'
-                    name='rd'
-                    defaultChecked
-                    value='1'/> 
+                    <input
+                        type='radio'
+                        name='rd'
+                        defaultChecked
+                        value='1' />
                     Radio 1
-                    <input 
-                    type='radio'
-                    name='rd'
-                    value='2'/> 
+                    <input
+                        type='radio'
+                        name='rd'
+                        value='2' />
                     Radio 2
                     <br />
                     <br />
+
+                    <select value={this.state.valueSelect}
+                        onChange={
+                            (e) => {
+                                this.setState({
+                                    valueSelect: e.target.value
+                                })
+                            }
+
+                        }>
+                        <option value='1'>Opção 1</option>
+                        <option value='2'>Opção 2</option>
+                        <option value='3'>Opção 3</option>
+                    </select>
+
+                    <br />
+                    <br />
+
+
+                    <select multiple value={this.state.valueSelectMulti}
+                        onChange={
+                            (e) => {
+                                console.log(e.target.value)
+                                this.setState({
+                                    valueSelectMulti: this.state.valueSelectMulti.concat(e.target.value)
+                                })
+                            }
+
+                        }>
+                        <option value='1'>Opção 1</option>
+                        <option value='2'>Opção 2</option>
+                        <option value='3'>Opção 3</option>
+                    </select>
 
                 </form>
             </div>
