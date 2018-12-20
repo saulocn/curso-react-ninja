@@ -14,11 +14,7 @@ class App extends Component {
         return (
             <div>
                 <form>
-                    <input type='text' value={this.state.value} onChange={(e) => {
-                        this.setState({
-                            value: e.target.value
-                        })
-                    }} />
+                    <input type='text' defaultValue='Valor inicial' />
                 </form>
             </div>
         )
