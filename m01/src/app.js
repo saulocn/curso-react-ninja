@@ -88,6 +88,11 @@ class App extends Component {
                         <option value='3'>Opção 3</option>
                     </select>
 
+                    <br />
+                    <br />
+
+                    <textarea defaultValue={'Valor Padrão do text area com \n quebra\n de \n linha'} />
+
                 </form>
             </div>
         )
