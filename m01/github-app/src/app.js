@@ -12,7 +12,7 @@ const App = () => (
         </div>
         <div className='user-info'>
             <img src="https://avatars3.githubusercontent.com/u/17600281?v=4" />
-            <h1>
+            <h1 className='username'>
                 <a href="https://github.com/saulocn">
                     Saulo de Carvalho Neto
                 </a>
@@ -30,11 +30,13 @@ const App = () => (
                 <h2>Repositórios</h2>
                 <ul>
                     <li><a href='#'>Nome do Repositório</a></li>
+                    <li><a href='#'>Nome do Repositório</a></li>
                 </ul>
             </div>
             <div className='starred'>
                 <h2>Favoritos</h2>
                 <ul>
+                    <li><a href='#'>Nome do Repositório</a></li>
                     <li><a href='#'>Nome do Repositório</a></li>
                 </ul>
             </div>
