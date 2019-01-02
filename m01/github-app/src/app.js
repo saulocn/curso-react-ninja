@@ -24,7 +24,6 @@ class App extends Component {
         if (keyCode === ENTER) {
             ajax().get(`https://api.github.com/users/${e.target.value}`)
                 .then(result => {
-                    console.log(result)
                     this.setState({
                         userinfo: {
                             username: result.name,
@@ -40,6 +39,33 @@ class App extends Component {
         }
     }
 
+    getRepos(e) {
+        ajax().get(`https://api.github.com/users/${this.state.userinfo.login}/repos`)
+            .then(result => {
+                let repos = result.map(rep => {
+                    return {
+                        name: rep.name,
+                        link: rep.html_url
+                    }
+                })
+                this.setState({ repos })
+            })
+    }
+
+    getStarred(e) {
+        ajax().get(`https://api.github.com/users/${this.state.userinfo.login}/starred`)
+            .then(result => {
+                let repos = result.map(rep => {
+                    return {
+                        name: rep.name,
+                        link: rep.html_url
+                    }
+                })
+                this.setState({ repos })
+            })
+
+    }
+
     render() {
         return (
             <AppContent
@@ -47,6 +73,8 @@ class App extends Component {
                 repos={this.state.repos}
                 starred={this.state.starred}
                 handleSearch={(e) => this.handleSearch(e)}
+                getRepos={e => this.getRepos(e)}
+                getStarred={e => this.getStarred(e)}
             />
         )
     }
