@@ -10,6 +10,8 @@ class App extends Component {
             //userinfo: null,
             userinfo: {
                 username: 'Saulo de Carvalho Neto',
+                photo: 'https://avatars3.githubusercontent.com/u/17600281?v=4',
+                login: 'saulocn',
                 repos: 34,
                 followers: 2,
                 following:14
