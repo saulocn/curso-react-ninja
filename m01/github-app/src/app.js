@@ -10,19 +10,22 @@ class App extends Component {
         this.state = {
             userinfo: null,
             repos: [],
-            starred: [
-                /*{
-                name: 'Nome do repositório Favorito do container',
-                link: '#',
-            }*/]
+            starred: []
         }
+    }
+
+    getGitHubApiUrl (username, type) {
+        const internalUser = username ? `/${username}` : ''
+        const internalType = type ? `/${type}` : ''
+        return `https://api.github.com/users${internalUser}${internalType}`
     }
 
     handleSearch(e) {
         const keyCode = e.which || e.keyCode
         const ENTER = 13
+        const username = e.target.value
         if (keyCode === ENTER) {
-            ajax().get(`https://api.github.com/users/${e.target.value}`)
+            ajax().get(this.getGitHubApiUrl(username))
                 .then(result => {
                     this.setState({
                         userinfo: {
@@ -32,39 +35,33 @@ class App extends Component {
                             repos: result.public_repos,
                             followers: result.followers,
                             following: result.following
-                        }
+                        },
+                        repos: [],
+                        starred: []
                     }
                     )
                 })
         }
     }
 
-    getRepos(e) {
-        ajax().get(`https://api.github.com/users/${this.state.userinfo.login}/repos`)
-            .then(result => {
-                let repos = result.map(rep => {
-                    return {
-                        name: rep.name,
-                        link: rep.html_url
-                    }
+    getRepos(type) {
+        return (e) => {
+            const login = this.state.userinfo.login
+            ajax()
+                .get(this.getGitHubApiUrl(login, type))
+                .then(result => {
+                    this.setState({
+                        [type]: result.map(repo => ({
+                            name: repo.name,
+                            link: repo.html_url
+                        }
+                        )
+                        )
+                    })
                 })
-                this.setState({ repos })
-            })
+        }
     }
 
-    getStarred(e) {
-        ajax().get(`https://api.github.com/users/${this.state.userinfo.login}/starred`)
-            .then(result => {
-                let repos = result.map(rep => {
-                    return {
-                        name: rep.name,
-                        link: rep.html_url
-                    }
-                })
-                this.setState({ repos })
-            })
-
-    }
 
     render() {
         return (
@@ -73,8 +70,8 @@ class App extends Component {
                 repos={this.state.repos}
                 starred={this.state.starred}
                 handleSearch={(e) => this.handleSearch(e)}
-                getRepos={e => this.getRepos(e)}
-                getStarred={e => this.getStarred(e)}
+                getRepos={this.getRepos('repos')}
+                getStarred={this.getRepos('starred')}
             />
         )
     }
