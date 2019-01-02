@@ -2,36 +2,51 @@
 
 import React, { Component } from 'react'
 import AppContent from './components/app-content';
+import ajax from '@fdaciuk/ajax'
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-            //userinfo: null,
-            userinfo: {
-                username: 'Saulo de Carvalho Neto',
-                photo: 'https://avatars3.githubusercontent.com/u/17600281?v=4',
-                login: 'saulocn',
-                repos: 34,
-                followers: 2,
-                following:14
-            },
-            repos: [{
-                name: 'Nome do repositório do container',
-                link: '#',
-            }],
-            starred: [{
+            userinfo: null,
+            repos: [],
+            starred: [
+                /*{
                 name: 'Nome do repositório Favorito do container',
                 link: '#',
-            }]
+            }*/]
         }
     }
+
+    handleSearch(e) {
+        const keyCode = e.which || e.keyCode
+        const ENTER = 13
+        if (keyCode === ENTER) {
+            ajax().get(`https://api.github.com/users/${e.target.value}`)
+                .then(result => {
+                    console.log(result)
+                    this.setState({
+                        userinfo: {
+                            username: result.name,
+                            photo: result.avatar_url,
+                            login: result.login,
+                            repos: result.public_repos,
+                            followers: result.followers,
+                            following: result.following
+                        }
+                    }
+                    )
+                })
+        }
+    }
+
     render() {
         return (
             <AppContent
                 userinfo={this.state.userinfo}
                 repos={this.state.repos}
                 starred={this.state.starred}
+                handleSearch={(e) => this.handleSearch(e)}
             />
         )
     }
