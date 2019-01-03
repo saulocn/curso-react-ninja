@@ -6,13 +6,13 @@ const Actions = ({ getRepos, getStarred }) => (
         <button
             onClick={getRepos}
         >
-        Ver Repositórios</button>
+            Ver Repositórios</button>
 
 
         <button
             onClick={getStarred}
         >
-        Ver Favoritos</button>
+            Ver Favoritos</button>
     </div>
 )
 
