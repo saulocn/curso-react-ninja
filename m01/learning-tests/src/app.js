@@ -3,7 +3,7 @@
 import React from 'react'
 
 const App = () => (
-  <div>My App3</div>
+  <div>My App</div>
 )
 
 export default App
