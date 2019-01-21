@@ -1,5 +1,5 @@
-module.exports = () => {
-    if(1 == 2) {
+export default () => {
+    if (1 == 2) {
         return
     }
 }
