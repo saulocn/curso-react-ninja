@@ -4,7 +4,6 @@ import { expect } from 'chai'
 import find from './find-recursive'
 
 
-
 it('find should be a function', () => {
     expect(find).to.be.a('function')
 })
@@ -47,6 +46,15 @@ it('find([1, 2, 3], item => item > 3) should return undefined', () => {
     const after = undefined
     expect(before).to.be.deep.equal(after)
 })
+
+
+
+it('find([], item => item) should return undefined', () => {
+    const before = find([], item => item)
+    const after = undefined
+    expect(before).to.be.deep.equal(after)
+})
+
 
 
 

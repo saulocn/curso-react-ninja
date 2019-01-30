@@ -46,3 +46,11 @@ it('find([1, 2, 3], item => item > 3) should return undefined', () => {
     expect(before).to.be.deep.equal(after)
 })
 
+
+
+it('find([], item => item) should return undefined', () => {
+    const before = find([], item => item)
+    const after = undefined
+    expect(before).to.be.deep.equal(after)
+})
+
