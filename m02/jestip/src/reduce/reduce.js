@@ -1,10 +1,14 @@
 'use strict'
 
 const reduce = (arr, fn, initialValue) => {
-    let index = 0;
-    let acc = initialValue || arr[index++]
-    for(let i=index; i<arr.length; i++){
-        acc = fn(acc, arr[i])
+    let acc = initialValue
+    let arrCopy = arr
+    if(initialValue === undefined) {
+        acc = arr[0]
+        arrCopy = arr.slice(1)
+    }
+    for(let i=0; i<arrCopy.length; i++){
+        acc = fn(acc, arrCopy[i], i, arrCopy)
     }
     return acc
 }
