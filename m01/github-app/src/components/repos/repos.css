@@ -1,9 +1,5 @@
 @charset 'utf-8';
 
-.repos-info li {
-  padding: 5px;
-}
-
 ul {
   list-style: none;
   padding: 0;
