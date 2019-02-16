@@ -9,7 +9,7 @@ ul {
 .repos,
 .starred {
   float: left;
-  width: 100%;
+  width: 50%;
 }
 
 .repos li,
