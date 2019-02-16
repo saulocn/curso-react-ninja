@@ -16,11 +16,14 @@
     "webpack": "^1.15.0",
     "webpack-dashboard": "^2.1.0",
     "webpack-dev-server": "^1.16.5",
-    "webpack-validator": "^3.0.1"
+    "webpack-validator": "^3.0.1",
+    "@kadira/storybook": "^2.21.0"
   },
   "scripts": {
     "start": "webpack-dashboard -- node server.js",
-    "build": "cross-env NODE_ENV=production webpack --progress --config webpack.prod.config -p"
+    "build": "cross-env NODE_ENV=production webpack --progress --config webpack.prod.config -p",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@fdaciuk/ajax": "^3.0.4",
