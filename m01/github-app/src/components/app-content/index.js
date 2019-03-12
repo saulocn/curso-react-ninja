@@ -4,7 +4,7 @@ import Search from 'components/search'
 import UserInfo from 'components/user-info';
 import Actions from 'components/actions';
 import Repos from 'components/repos';
-import style from './app.css'
+import './app.css'
 
 const AppContent = ({
     userinfo,
@@ -16,7 +16,7 @@ const AppContent = ({
     isFetching
 }) => (
 
-        <div className={style.app}>
+        <div className='app'>
             <Search isDisabled={isFetching} handleSearch={handleSearch} />
             {isFetching && <div>Carregando ...</div>}
             {!!userinfo && <UserInfo userinfo={userinfo} />}

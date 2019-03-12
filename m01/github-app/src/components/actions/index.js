@@ -1,9 +1,9 @@
 'use strict'
 import React from 'react'
-import style from './actions.css'
+import './actions.css'
 
 const Actions = ({ getRepos, getStarred }) => (
-  <div className={style.actions}>
+  <div className='actions'>
     <button
       onClick={getRepos}>Ver Repositórios
     </button>
