@@ -6,13 +6,12 @@ import Repos from './index'
 
 storiesOf('Repos', module)
   .add('with title prop', () => (
-    <Repos title='Favoritos'></Repos>
+    <Repos title='Favoritos' />
   ))
-  .add('with repos', () =>(
+  .add('with repos', () => (
     <Repos title='Favoritos'
-    repos={[{
-      link: 'http://github.com/saulocn',
-      name: 'Github'
-    }]}
-    ></Repos>
+      repos={[{
+        link: 'http://github.com/saulocn',
+        name: 'Github'
+      }]} />
   ))

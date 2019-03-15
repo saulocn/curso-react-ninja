@@ -7,20 +7,20 @@ import App from './app'
 
 import './css/style.css'
 
-const renderApp = (NextApp) =>{
-    render(
-        <AppContainer>
-            <NextApp />
-        </AppContainer>,
-        document.querySelector('[data-js="app"]')
-    )
+const renderApp = (NextApp) => {
+  render(
+    <AppContainer>
+      <NextApp />
+    </AppContainer>,
+    document.querySelector('[data-js="app"]')
+  )
 }
 
 renderApp(App)
 
-if(module.hot){
-    module.hot.accept('./app', ()=>{
-        const NextApp = require('./app').default
-        renderApp(NextApp)
-    })
+if (module.hot) {
+  module.hot.accept('./app', () => {
+    const NextApp = require('./app').default
+    renderApp(NextApp)
+  })
 }
