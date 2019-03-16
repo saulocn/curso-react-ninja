@@ -6,7 +6,10 @@ import ajax from '@fdaciuk/ajax'
 
 const initialReposState = {
   repos: [],
-  pagination: {}
+  pagination: {
+    total: 1,
+    activePage: 1
+  }
 }
 
 class App extends Component {
@@ -36,7 +39,7 @@ class App extends Component {
     if (keyCode === ENTER) {
       this.setState({ isFetching: true })
       ajax().get(this.getGitHubApiUrl(username))
-        .then(result => {
+        .then((result) => {
           this.setState({
             userinfo: {
               username: result.name,
@@ -60,7 +63,9 @@ class App extends Component {
       const login = this.state.userinfo.login
       ajax()
         .get(this.getGitHubApiUrl(login, type, page))
-        .then(result => {
+        .then((result, xhr) => {
+          const linkHeader = xhr.getAllResponseHeaders('Link') || ''
+          const totalPagesMatch = linkHeader.match(/&page=(\d+)>; rel="last/)
           this.setState({
             [type]: {
               repos: result.map(repo => ({
@@ -70,7 +75,7 @@ class App extends Component {
               )
               ),
               pagination: {
-                ...this.state[type].pagination,
+                total: totalPagesMatch ? +totalPagesMatch[1] : this.state[type].pagination.total,
                 activePage: page
               }
             }
