@@ -2,23 +2,24 @@
 
 
 const webpack = require('webpack')
-const validate = require('webpack-validator')
+const common = require('./common')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const common = require('./common')
 
 const crp = new ExtractTextPlugin('crp.css')
 const styles = new ExtractTextPlugin('[name]-[hash].css')
 
-module.exports = validate({
+module.exports = {
   entry: common.entry,
   output: common.output,
   plugins: [
     crp,
     styles,
-    new ExtractTextPlugin('[name]-[hash].css'),
+    new ExtractTextPlugin({
+      filename: '[name]-[hash].css'
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': '"production"'
@@ -26,21 +27,21 @@ module.exports = validate({
     }),
     new HtmlPlugin(common.htmlPluginConfig('template.html')),
     new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
+      sourceMap: true
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin()
   ],
   module: {
-    preLoaders: [common.standardPreLoader],
-    loaders: [
+    rules: [
+      common.standardPreLoader,
       common.jsLoader,
       Object.assign({},
         common.cssLoader,
         {
-          loaders: undefined,
-          loader: ExtractTextPlugin.extract.apply(ExtractTextPlugin, common.cssLoader.loaders)
+          use: ExtractTextPlugin.extract.apply({
+            fallback: common.cssLoader.loaders[0],
+            use: common.cssLoader.loaders.slice(1)
+          })
         })]
   },
   resolve: common.resolve
-})
+}

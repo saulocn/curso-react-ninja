@@ -1,15 +1,13 @@
 'use strict'
 
 const webpack = require('webpack')
-const validate = require('webpack-validator')
-
 const common = require('./common')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 
-module.exports = validate({
+module.exports = {
   devtool: 'source-map',
   entry: [
     'react-hot-loader/patch',
@@ -27,11 +25,11 @@ module.exports = validate({
     new HtmlPlugin(common.htmlPluginConfig('template.dev.html'))
   ],
   module: {
-    preLoaders: [common.standardPreLoader],
-    loaders: [
+    rules: [
+      common.standardPreLoader,
       common.jsLoader,
       common.cssLoader
     ]
   },
   resolve: common.resolve
-})
+}
