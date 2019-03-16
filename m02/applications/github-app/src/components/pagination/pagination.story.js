@@ -6,7 +6,9 @@ import Pagination from './index'
 
 const stories = storiesOf('<Pagination />', module)
 stories.add('without props', () => (
-  <Pagination />
+  <div>
+    <Pagination />
+  </div>
 ))
 
 stories.add('with total and activePage', () => (
