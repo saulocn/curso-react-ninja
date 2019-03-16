@@ -1,9 +1,6 @@
 'use strict'
 
 const path = require('path')
-const webpack = require('webpack')
-const HtmlPlugin = require('html-webpack-plugin')
-
 
 module.exports = {
 
@@ -14,12 +11,12 @@ module.exports = {
         filename: '[name]-[hash].js'
     },
 
-    htmlPluginConfig: {
+    htmlPluginConfig: (template) => ({
         title: 'Github App',
-        template: path.join(__dirname, '..', 'src', 'html', 'template.dev.html')
-    },
+        template: path.join(__dirname, '..', 'src', 'html', template)
+    }),
 
-    standardPreLoaders: {
+    standardPreLoader: {
         test: /\.js$/,
         exclude: /node_modules/,
         include: /src/,
@@ -35,12 +32,13 @@ module.exports = {
         test: /\.css$/,
         exclude: /node_modules/,
         include: /src/,
-        loaders: ['style', 'css?modules']
+        loaders: ['style', 'css']
     },
     resolve: {
         alias: {
             src: path.join(__dirname, '..', 'src'),
-            components: path.join(__dirname, '..', 'src', 'components')
+            components: path.join(__dirname, '..', 'src', 'components'),
+            utils: path.join(__dirname, '..', 'src', 'utils')
         }
     }
 }
