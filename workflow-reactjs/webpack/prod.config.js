@@ -1,18 +1,20 @@
 'use strict'
-
+const { join } = require('path')
 const webpack = require('webpack')
 const common = require('./common')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const styles = new ExtractTextPlugin('[name]-[hash].css')
+const CleanPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: common.entry,
   output: common.output,
   plugins: [
-    styles,
+    new CleanPlugin(['dist'], {
+      root: join(__dirname, '..')
+    }),
     new ExtractTextPlugin({
       filename: '[name]-[hash].css'
     }),
