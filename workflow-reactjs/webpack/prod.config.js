@@ -8,7 +8,10 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: common.entry,
+  entry: {
+    app: common.entry,
+    vendor: ['react', 'react-dom']
+  },
   output: common.output,
   plugins: [
     new CleanPlugin(['dist'], {
@@ -22,6 +25,7 @@ module.exports = {
         'NODE_ENV': '"production"'
       }
     }),
+    new webpack.optimize.CommonsChunkPlugin('vendor'),
     new HtmlPlugin(common.htmlPluginConfig('template.html')),
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true
