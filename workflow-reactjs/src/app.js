@@ -1,7 +1,7 @@
 'use strict'
 
 import React, { Component } from 'react'
-import Title from 'components/title/index'
+import Title from 'components/title'
 
 class App extends Component {
   constructor () {
@@ -19,9 +19,9 @@ class App extends Component {
   }
 
   async componentDidMount () {
-    try {
-      this.setState({ title: await this.getTitle() })
-    } catch (e) { }
+    this.setState({
+      title: await this.getTitle()
+    })
   }
 
   componentWillUnmount () {
