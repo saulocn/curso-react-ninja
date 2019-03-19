@@ -4,10 +4,31 @@ import React, { Component } from 'react'
 import Title from 'components/title/index'
 
 class App extends Component {
-  render () {
+  constructor() {
+    super()
+    this.state = {
+      title: '...'
+    }
+  }
+  getTitle() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('My App with Promise')
+      }, 2000)
+    })
+  }
+  componentDidMount() {
+    this.getTitle()
+      .then(title => {
+        this.setState({
+          title
+        })
+      })
+  }
+  render() {
     return (
       <div>
-        <Title />
+        <Title>{this.state.title}</Title>
       </div>
     )
   }

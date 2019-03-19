@@ -2,8 +2,8 @@
 
 import React from 'react'
 
-const Title = () => (
-  <h1>My App</h1>
+const Title = ({ children }) => (
+  <h1>{children}</h1>
 )
 
 export default Title
