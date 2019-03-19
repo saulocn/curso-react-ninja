@@ -13,18 +13,15 @@ class App extends Component {
   getTitle() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve('My App with Promise')
+        resolve('My App with async / await')
       }, 2000)
     })
   }
-  componentDidMount() {
-    this.getTitle()
-      .then(title => {
-        this.setState({
-          title
-        })
-      })
+
+  async componentDidMount() {
+    this.setState({ title: await this.getTitle() })
   }
+
   render() {
     return (
       <div>
