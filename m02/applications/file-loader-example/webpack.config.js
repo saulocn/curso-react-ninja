@@ -12,9 +12,9 @@ module.exports = {
         rules: [{
             test: /\.(txt|svg|jpg|jpeg|png|gif|ttf|woff|woff2|)$/,
             use: {
-                loader: 'file-loader',
+                loader: 'url-loader',
                 query: {
-                    name: '[path][name]-[hash:8].[ext]'
+                    limit: 100 //bytes
                 }
             }
         }]

@@ -68,9 +68,9 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = __webpack_require__.p + "name-7dc07959.txt";
+module.exports = "data:text/plain;base64,U2F1bG8gQ2FydmFsaG8="
 
 /***/ }),
 /* 1 */
