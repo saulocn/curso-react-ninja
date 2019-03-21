@@ -68,9 +68,10 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "data:text/plain;base64,U2F1bG8gQ2FydmFsaG8="
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = "Saulo Carvalho";
 
 /***/ }),
 /* 1 */
@@ -79,12 +80,11 @@ module.exports = "data:text/plain;base64,U2F1bG8gQ2FydmFsaG8="
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__name_txt__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__name_txt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__name_txt__);
 
 
 
 
-console.log(__WEBPACK_IMPORTED_MODULE_0__name_txt___default.a)
+console.log(__WEBPACK_IMPORTED_MODULE_0__name_txt__["a" /* default */])
 
 /***/ })
 /******/ ]);
