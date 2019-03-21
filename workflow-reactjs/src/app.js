@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react'
 import Title from 'components/title'
+import name from './name.txt'
 
 class App extends Component {
   constructor () {
@@ -13,7 +14,7 @@ class App extends Component {
   getTitle () {
     return new Promise((resolve, reject) => {
       this.timer = setTimeout(() => {
-        resolve('My App with async / await')
+        resolve(`My App with async / await: ${name}`)
       }, 2000)
     })
   }
