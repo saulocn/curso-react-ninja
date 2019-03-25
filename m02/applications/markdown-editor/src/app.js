@@ -14,8 +14,7 @@ marked.setOptions({
 })
 
 class App extends Component {
-
-  constructor() {
+  constructor () {
     super()
     this.state = { value: '' }
 
@@ -23,14 +22,12 @@ class App extends Component {
       this.setState({ value: e.target.value })
     }
 
-    this.getMarkup = ()  => {
+    this.getMarkup = () => {
       return { __html: marked(this.state.value) }
     }
   }
 
-
-
-  render() {
+  render () {
     return (
       <MarkdownEditor
         value={this.state.value}
