@@ -1,37 +1,42 @@
 'use strict'
+
 const webpack = require('webpack')
 const common = require('./common')
 
 const HtmlPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
 const CleanPlugin = require('clean-webpack-plugin')
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = {
   entry: common.entry,
-  output: common.output,
-  plugins: [
 
+  output: common.output,
+
+  plugins: [
     new CleanPlugin(['dist'], {
       root: common.paths.root
     }),
+
     new ExtractTextPlugin({
       filename: '[name]-[hash].css'
     }),
+
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': '"production"'
       }
     }),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'react-build',
       chunks: ['main'],
       minChunks: ({ resource }) => (
-        /node_modules\/(react(-dom)?|fbjs)/.test(resource) ||
+        /node_modules\/(react(-dom)?|fbjs)\//.test(resource) ||
         /node_modules\/preact/.test(resource)
       )
     }),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       chunks: ['main'],
@@ -39,24 +44,28 @@ module.exports = {
         /node_modules/.test(resource)
       )
     }),
-    new HtmlPlugin(Object.assign({}, common.htmlPluginConfig,
-      {
-        minify: { collapseWhitespace: true },
-        chunksSortMode: (chunk1, chunk2) => {
-          const order = ['react-build', 'vendor', 'main']
-          const left = order.indexOf(chunk1.names[0])
-          const right = order.indexOf(chunk2.names[0])
-          console.log(order, chunk1.names, chunk2.names, left - right)
-          return left - right
-        }
-      })),
+
+    new HtmlPlugin(Object.assign({}, common.htmlPluginConfig, {
+      minify: { collapseWhitespace: true },
+
+      chunksSortMode: (chunk1, chunk2) => {
+        const order = ['react-build', 'vendor', 'main']
+        const left = order.indexOf(chunk1.names[0])
+        const right = order.indexOf(chunk2.names[0])
+        return left - right
+      }
+    })),
+
     new webpack.optimize.UglifyJsPlugin({
       sourceMap: true
     })
   ].concat(
     process.env.ANALYZER ? new BundleAnalyzerPlugin() : []
   ),
+
   module: {
+    noParse: common.module.noParse,
+
     rules: [
       common.standardPreLoader,
       common.jsLoader,
@@ -67,7 +76,8 @@ module.exports = {
           fallback: common.cssLoader.use[0],
           use: common.cssLoader.use.slice(1)
         })
-      })]
+      })
+    ]
   },
 
   resolve: {

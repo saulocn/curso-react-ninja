@@ -58,6 +58,7 @@
   },
   "standard": {
     "globals": [
+      "localstorage",
       "alert",
       "test",
       "it",
