@@ -22,10 +22,16 @@ import('highlight.js')
 class App extends Component {
   constructor() {
     super()
-    this.state = { value: '' }
+    this.state = { 
+      value: '',
+      isSaving :  false
+    }
 
     this.handleChange = e => {
-      this.setState({ value: e.target.value })
+      this.setState({ 
+        value: e.target.value,
+        isSaving: true 
+      })
     }
 
     this.getMarkup = () => {
@@ -34,6 +40,9 @@ class App extends Component {
 
     this.handleSave = () => {
       localStorage.setItem('md', this.state.value)
+      this.setState({ 
+        isSaving: false 
+      })
     }
   }
 
@@ -42,11 +51,20 @@ class App extends Component {
     this.setState({ value })
   }
 
+  componentDidUpdate() {
+    clearInterval(this.timer)
+    this.timer = setTimeout(this.handleSave, 300)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
   render() {
     return (
       <MarkdownEditor
         value={this.state.value}
-        handleSave={this.handleSave}
+        isSaving={this.state.isSaving}
         handleChange={this.handleChange}
         getMarkup={this.getMarkup}
       />
