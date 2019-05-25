@@ -5,20 +5,19 @@ import React, { PropTypes } from 'react'
 import './button.css'
 
 const Button = ({ onClick, children, kind }) => (
-    <button onClick={onClick} className={`button ${kind ? `-${kind}` : ''}`}>
-        {children}
-    </button>
+  <button onClick={onClick} className={`button ${kind ? `-${kind}` : ''}`}>
+    {children}
+  </button>
 )
 
 Button.defaultProps = {
-    kind: ''
+  kind: ''
 }
 
-
 Button.protoTypes = {
-    onClick: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired,
-    kind: PropTypes.oneOf(['success', 'danger']),
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  kind: PropTypes.oneOf(['success', 'danger'])
 }
 
 export default Button

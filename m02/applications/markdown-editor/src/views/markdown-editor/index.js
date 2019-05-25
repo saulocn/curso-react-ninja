@@ -4,7 +4,7 @@ import Header from './header'
 
 const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef, ...props }) => (
   <section className='editor'>
-    <Header {...props}/>
+    <Header {...props} />
     <textarea value={value} onChange={handleChange} autoFocus ref={textareaRef} />
     <article className='view' dangerouslySetInnerHTML={getMarkup()} />
   </section>

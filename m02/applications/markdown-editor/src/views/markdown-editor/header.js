@@ -5,22 +5,22 @@ import Button from 'components/button'
 import SaveMessage from 'components/save-message'
 
 const MarkdownEditorHeader = ({ isSaving, handleRemove, handleCreate }) => (
-    <header className='editor-header'>
-        <SaveMessage isSaving={isSaving} />
+  <header className='editor-header'>
+    <SaveMessage isSaving={isSaving} />
 
-        <Button onClick={handleCreate} kind='success'>
+    <Button onClick={handleCreate} kind='success'>
             Criar Novo
-        </Button>
+    </Button>
 
-        <Button onClick={handleRemove} kind='danger'>
+    <Button onClick={handleRemove} kind='danger'>
             Remover
-        </Button>
-    </header>
+    </Button>
+  </header>
 )
 
 MarkdownEditorHeader.protoTypes = {
-    handleRemove: PropTypes.func.isRequired,
-    handleCreate: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
+  handleCreate: PropTypes.func.isRequired
 }
 
 export default MarkdownEditorHeader
