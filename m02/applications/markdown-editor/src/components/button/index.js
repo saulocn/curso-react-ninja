@@ -8,8 +8,7 @@ import './button.css'
 const Button = ({ onClick, children, kind }) => (
   <button onClick={onClick} className={
     css({
-      '-success': kind === 'success',
-      '-danger': kind === 'danger'
+      [`-${kind}`]: kind
     }, 'button')}>
     {children}
   </button>
