@@ -6,7 +6,7 @@ import MarkdownEditor from 'views/markdown-editor'
 
 import './css/style.css'
 
-import('highlight.js')
+import ('highlight.js')
   .then(hljs => {
     marked.setOptions({
       highlight: (code, lang) => {
