@@ -5,7 +5,7 @@ import React, { PropTypes } from 'react'
 import './button.css'
 
 const Button = ({ onClick, children, kind }) => (
-    <button onClick={onClick} className={`button -${kind ? `-${kind}` : ''}`}>
+    <button onClick={onClick} className={`button ${kind ? `-${kind}` : ''}`}>
         {children}
     </button>
 )
