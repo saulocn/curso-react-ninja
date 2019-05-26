@@ -7,12 +7,12 @@ import Files from './files'
 
 const MarkdownEditor = ({ value, handleChange, getMarkup, textareaRef,
   files, handleOpenFile, ...props }) => (
-  <section className='editor'>
-      <Header {...props} />
-      <Files files={files} handleOpenFile={handleOpenFile} />
-      <textarea value={value} onChange={handleChange} autoFocus ref={textareaRef} />
-      <article className='view' dangerouslySetInnerHTML={getMarkup()} />
-    </section>
+    <section className='editor'>
+    <Header {...props} handleChange={handleChange} />
+    <Files files={files} handleOpenFile={handleOpenFile} />
+    <textarea value={value} onChange={handleChange('value')} autoFocus ref={textareaRef} />
+    <article className='view' dangerouslySetInnerHTML={getMarkup()} />
+  </section>
 )
 
 MarkdownEditor.protoTypes = {

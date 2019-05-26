@@ -27,6 +27,7 @@ class App extends Component {
 
     this.clearState = () => ({
       value: '',
+      title: '',
       id: v4(),
     })
 
@@ -39,6 +40,7 @@ class App extends Component {
     this.handleOpenFile = fileId => () => {
       this.setState({
         value: this.state.files[fileId].content,
+        title: this.state.files[fileId].title,
         id: fileId
       })
     }
@@ -48,9 +50,9 @@ class App extends Component {
       this.textarea.focus()
     }
 
-    this.handleChange = e => {
+    this.handleChange = (field) => e => {
       this.setState({
-        value: e.target.value,
+        [field]: e.target.value,
         isSaving: true
       })
     }
@@ -62,7 +64,7 @@ class App extends Component {
     this.handleSave = () => {
       if (this.state.isSaving) {
         const newFile = {
-          title: 'Sem Tìtulo',
+          title: this.state.title || 'Sem Título',
           content: this.state.value
         }
         localStorage.setItem(this.state.id, JSON.stringify(newFile))
@@ -134,6 +136,7 @@ class App extends Component {
         textareaRef={this.textareaRef}
         files={this.state.files}
         handleOpenFile={this.handleOpenFile}
+        title={this.state.title}
       />
     )
   }
