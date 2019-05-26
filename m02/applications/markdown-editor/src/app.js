@@ -20,6 +20,7 @@ import('highlight.js')
 
   })
 
+
 class App extends Component {
   constructor() {
     super()
@@ -31,7 +32,15 @@ class App extends Component {
 
     this.state = {
       ...this.clearState(),
-      isSaving: null
+      isSaving: null,
+      files: {}
+    }
+
+    this.handleOpenFile = fileId => () => {
+      this.setState({
+        value: this.state.files[fileId],
+        id: fileId
+      })
     }
 
     this.createNew = () => {
@@ -61,6 +70,18 @@ class App extends Component {
 
     this.handleRemove = () => {
       localStorage.removeItem(this.state.id)
+      /*let files = Object.keys(this.state.files).reduce((acc, fileId) => {
+        return fileId === this.state.id ? acc : {
+          ...acc,
+          [fileId]: this.state.files[fileId]
+        }
+      }, {})
+      delete files[this.state.id]
+      */
+      // eslint-disable-next-line no-unused-vars
+      const { [this.state.id]: id, ...files } = this.state.files
+
+      this.setState({ files })
       this.createNew()
     }
 
@@ -72,6 +93,16 @@ class App extends Component {
       this.textarea = node
     }
 
+  }
+
+  componentDidMount() {
+    const files = Object.keys(localStorage)
+    this.setState({
+      files: files.reduce((acc, fileId) => ({
+        ...acc,
+        [fileId]: localStorage.getItem(fileId)
+      }), {})
+    })
   }
 
   componentDidUpdate() {
@@ -93,6 +124,8 @@ class App extends Component {
         handleRemove={this.handleRemove}
         handleCreate={this.handleCreate}
         textareaRef={this.textareaRef}
+        files={this.state.files}
+        handleOpenFile={this.handleOpenFile}
       />
     )
   }
