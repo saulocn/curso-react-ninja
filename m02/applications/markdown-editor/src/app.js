@@ -107,13 +107,6 @@ class App extends Component {
   componentDidMount() {
     const files = JSON.parse(localStorage.getItem('markdown-editor'))
     this.setState({ files })
-    /*const files = Object.keys(localStorage)
-    this.setState({
-      files: files.filter(id => id.match(/^\w{8}-\w{4}-\w{4}-\w{4}-\w{12}/)).reduce((acc, fileId) => ({
-        ...acc,
-        [fileId]: JSON.parse(localStorage.getItem(fileId))
-      }), {})
-    })*/
   }
 
   componentDidUpdate() {
